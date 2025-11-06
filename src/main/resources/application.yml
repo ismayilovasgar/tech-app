@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: tech_app
+  datasource:
+    url: jdbc:mysql://localhost:3306/tech_app?useSSL=false&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: a123@!
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    open-in-view: false # ozun ucun arastirma et genis movzudu
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
