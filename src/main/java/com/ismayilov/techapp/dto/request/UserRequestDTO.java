@@ -1,5 +1,4 @@
-package com.ismayilov.techapp.dto.response;
-
+package com.ismayilov.techapp.dto.request;
 
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -7,13 +6,18 @@ import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class CommonResponseDTO<T> implements Serializable {
+public class UserRequestDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    Status status;
-    T data;
+    String name;
+    String surname;
+    String password;
+    String pin;
+    List<AccountRequestDTO> accountRequestDTOList;
+
 }
