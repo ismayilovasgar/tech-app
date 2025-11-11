@@ -1,9 +1,11 @@
 package com.ismayilov.techapp.entity;
 
+import com.ismayilov.techapp.dto.request.AccountRequestDTO;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -36,6 +38,19 @@ public class TechUser {
     @Column(name = "role", length = 30)
     String role;
 
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     List<Account> accountList;
+
+    public void addAccountToList(List<AccountRequestDTO> accountRequestDTOList) {
+
+        accountList = new ArrayList<>();
+        accountList.forEach(accountDTO -> accountList.add(
+                Account.builder()
+                        .balance(accountDTO.getBalance())
+                        .AccountNo(accountDTO.getAccountNo())
+                        .currency(accountDTO.getCurrency())
+                        .isActive(accountDTO.getIsActive())
+                        .user(this).build())
+        );
+    }
 }

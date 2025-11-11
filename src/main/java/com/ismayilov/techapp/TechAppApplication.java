@@ -1,6 +1,6 @@
 package com.ismayilov.techapp;
 
-import com.ismayilov.techapp.entity.one_to_one.UserService;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,9 +15,9 @@ public class TechAppApplication {
 
     }
 
-    @Bean
-    CommandLineRunner run(UserService userService) {
-        return args -> userService.createSampleUser();
-    }
+//    @Bean
+//    CommandLineRunner run(UserService userService) {
+//        return args -> userService.createSampleUser();
+//    }
 
 }
