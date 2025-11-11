@@ -4,6 +4,7 @@ import com.ismayilov.techapp.dto.request.UserRequestDTO;
 import com.ismayilov.techapp.dto.response.CommonResponseDTO;
 import com.ismayilov.techapp.dto.response.Status;
 import com.ismayilov.techapp.dto.response.StatusCode;
+import com.ismayilov.techapp.dto.response.UserResponseDTO;
 import com.ismayilov.techapp.entity.TechUser;
 import com.ismayilov.techapp.exception.UserAlreadyExist;
 import com.ismayilov.techapp.repository.impl.UserRepositoryCustom;
@@ -42,13 +43,20 @@ public class UserServiceImpl implements UserService {
             ).build();
         }
 
-        TechUser.builder()
+        TechUser user = TechUser.builder()
                 .name(userRequestDTO.getName())
                 .surname(userRequestDTO.getSurname())
                 .pin(userRequestDTO.getPin())
                 .password(userRequestDTO.getPassword())
                 .role("ROLE_USER")
                 .build();
-        return null;
+
+        user.addAccountToList(userRequestDTO.getAccountRequestDTOList());
+        return CommonResponseDTO.builder()
+                .status(Status.builder()
+                        .statusCode(StatusCode.SUCCESS)
+                        .message("User created Successfully")
+                        .build()).data(UserResponseDTO.entityResponse(userRepository.save(user)))
+                .build();
     }
 }
