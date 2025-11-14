@@ -11,8 +11,8 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "user_accounts")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Account {
