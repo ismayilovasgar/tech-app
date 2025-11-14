@@ -38,18 +38,17 @@ public class TechUser {
     @Column(name = "role", length = 30)
     String role;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
     List<Account> accountList;
 
     public void addAccountToList(List<AccountRequestDTO> accountRequestDTOList) {
-
         accountList = new ArrayList<>();
         accountList.forEach(accountDTO -> accountList.add(
                 Account.builder()
                         .balance(accountDTO.getBalance())
-                        .AccountNo(accountDTO.getAccountNo())
                         .currency(accountDTO.getCurrency())
                         .isActive(accountDTO.getIsActive())
+                        .AccountNo(accountDTO.getAccountNo())
                         .user(this).build())
         );
     }

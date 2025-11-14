@@ -54,7 +54,8 @@ public class UserServiceImpl implements UserService {
                 .status(Status.builder()
                         .statusCode(StatusCode.SUCCESS)
                         .message("User created Successfully")
-                        .build()).data(UserResponseDTO.entityResponse(userRepository.save(user)))
+                        .build())
+                .data(UserResponseDTO.entityResponse(userRepository.save(user)))
                 .build();
     }
 }
