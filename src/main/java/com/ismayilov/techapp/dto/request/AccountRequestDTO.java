@@ -15,8 +15,6 @@ import java.math.BigDecimal;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class AccountRequestDTO implements Serializable {
-
-    @Serial
     private static final long serialVersionUID = 1L;
 
     BigDecimal balance;
