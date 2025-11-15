@@ -13,6 +13,5 @@ import lombok.experimental.FieldDefaults;
 @EqualsAndHashCode(callSuper = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class InvalidDTO extends RuntimeException {
-
     CommonResponseDTO<?> responseDTO;
 }

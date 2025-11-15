@@ -7,6 +7,7 @@ import lombok.experimental.FieldDefaults;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Getter
@@ -41,6 +42,7 @@ public class TechUser {
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
     List<Account> accountList;
 
+
     public void addAccountToList(List<AccountRequestDTO> accountRequestDTOList) {
         accountList = new ArrayList<>();
         accountList.forEach(accountDTO -> accountList.add(
@@ -48,8 +50,9 @@ public class TechUser {
                         .balance(accountDTO.getBalance())
                         .currency(accountDTO.getCurrency())
                         .isActive(accountDTO.getIsActive())
-                        .AccountNo(accountDTO.getAccountNo())
+                        .accountNo(accountDTO.getAccountNo())
                         .user(this).build())
         );
+
     }
 }
