@@ -33,7 +33,7 @@ public class Account {
     Boolean isActive;
 
     @Column(name = "account_no")
-    Integer AccountNo;
+    Integer accountNo;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

@@ -19,12 +19,12 @@ import org.springframework.stereotype.Service;
 @Service
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserServiceImpl implements UserService {
+
     @Autowired
     DTOUtil dtoUtil;
 
     @Autowired
     UserRepository userRepository;
-
 
     public CommonResponseDTO<?> saveUser(UserRequestDTO userRequestDTO) {
         dtoUtil.isValid(userRequestDTO);
