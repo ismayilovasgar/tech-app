@@ -1,5 +1,6 @@
 package com.ismayilov.techapp.util;
 
+import com.ismayilov.techapp.dto.request.AuthenticationRequestDTO;
 import com.ismayilov.techapp.dto.request.UserRequestDTO;
 import com.ismayilov.techapp.dto.response.CommonResponseDTO;
 import com.ismayilov.techapp.dto.response.Status;
@@ -25,6 +26,11 @@ public class DTOUtil {
         checkDTOInput(userRequestDTO.getPin());
         checkDTOInput(userRequestDTO.getPassword());
         checkDTOInput(userRequestDTO.getAccountRequestDTOList());
+    }
+
+    public void isValid(AuthenticationRequestDTO authenticationRequestDTO) {
+        checkDTOInput(authenticationRequestDTO.getPin());
+        checkDTOInput(authenticationRequestDTO.getPassword());
     }
 
     private <T> void checkDTOInput(T t) {
