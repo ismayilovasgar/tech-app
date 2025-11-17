@@ -33,6 +33,7 @@ public class ApplicationSecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) {
         try {
             return httpSecurity
