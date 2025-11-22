@@ -38,8 +38,8 @@ public class ApplicationSecurityConfig {
         try {
             return httpSecurity
                     .csrf().disable()
-                    .authorizeHttpRequests()
-                    .antMatchers("/api/v1/register/", "/api/v1/login")
+                    .authorizeRequests()
+                    .antMatchers("/api/v1/register", "/api/v1/login")
                     .permitAll()
                     .anyRequest()
                     .authenticated()

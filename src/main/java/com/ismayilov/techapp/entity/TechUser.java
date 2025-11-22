@@ -30,13 +30,13 @@ public class TechUser {
     @Column(name = "user_surname", length = 50)
     String surname;
 
-    @Column(name = "password", length = 30, unique = true)
+    @Column(name = "password", length = 255, unique = true)
     String password;
 
     @Column(name = "pin", length = 90)
     String pin;
 
-    @Column(name = "role", length = 30)
+    @Column(name = "role", length = 50)
     String role;
 
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")

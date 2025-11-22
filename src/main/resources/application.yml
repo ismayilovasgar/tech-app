@@ -11,5 +11,5 @@ spring:
     open-in-view: false # ozun ucun arastirma et genis movzudu
     show-sql: true
     hibernate:
-      #      ddl-auto: update
-      ddl-auto: create-drop
+      ddl-auto: update
+#      ddl-auto: create-drop
