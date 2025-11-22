@@ -64,5 +64,4 @@ public class JwtUtil {
     public Date getDate(String token) {
         return extractClaims(token, Claims::getExpiration);
     }
-
 }
