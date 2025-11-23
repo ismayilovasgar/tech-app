@@ -64,4 +64,12 @@ public class JwtUtil {
     public Date getDate(String token) {
         return extractClaims(token, Claims::getExpiration);
     }
+
+    public boolean validateToken(String token, UserDetails userDetails) {
+        return (!expiredToken(token) && getUserPin(token).equals(userDetails.getUsername()));
+    }
+
+    private boolean expiredToken(String token) {
+        return getDate(token).before(new Date());
+    }
 }
