@@ -1,5 +1,6 @@
 package com.ismayilov.techapp.service.impl;
 
+import com.ismayilov.techapp.dto.request.AccountToAccountRequestDTO;
 import com.ismayilov.techapp.dto.response.AccountResponseDTOList;
 import com.ismayilov.techapp.dto.response.CommonResponseDTO;
 import com.ismayilov.techapp.dto.response.Status;
@@ -8,6 +9,7 @@ import com.ismayilov.techapp.entity.TechUser;
 import com.ismayilov.techapp.repository.inter.UserRepository;
 import com.ismayilov.techapp.service.inter.AccountService;
 import com.ismayilov.techapp.util.CurrentUser;
+import com.ismayilov.techapp.util.DTOUtil;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class AccountServiceImpl implements AccountService {
 
     @Autowired
     CurrentUser currentUser;
+
+    @Autowired
+    DTOUtil dtoUtil;
 
     @Autowired
     UserRepository userRepository;
@@ -57,5 +62,10 @@ public class AccountServiceImpl implements AccountService {
                         .build())
                 .data(AccountResponseDTOList.entityToDTO(activeAccounts))
                 .build();
+    }
+
+    public CommonResponseDTO<?> account2account(AccountToAccountRequestDTO accountToAccountRequestDTO) {
+        dtoUtil.isValid(accountToAccountRequestDTO);
+        return null;
     }
 }
