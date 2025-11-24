@@ -34,6 +34,16 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = UserAlreadyExist.class)
     public ResponseEntity<?> userExist(UserAlreadyExist userAlreadyExist) {
-        return new ResponseEntity<>(userAlreadyExist.getResponseDTO(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(userAlreadyExist.getResponseDTO(), HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(value = NoSuchUserExist.class)
+    public ResponseEntity<?> noFoundUser(NoSuchUserExist noSuchUserExist) {
+        return new ResponseEntity<>(noSuchUserExist.getResponseDTO(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(value = NoActiveAccount.class)
+    public ResponseEntity<?> noFoundActiveAccount(NoActiveAccount noActiveAccount) {
+        return new ResponseEntity<>(noActiveAccount.getResponseDTO(), HttpStatus.NOT_FOUND);
     }
 }

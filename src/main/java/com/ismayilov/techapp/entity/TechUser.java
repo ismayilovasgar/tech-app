@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Table(name = "tech_user")
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@ToString(exclude = "accountList")
 public class TechUser {
 
     @Id
@@ -30,29 +31,34 @@ public class TechUser {
     @Column(name = "user_surname", length = 50)
     String surname;
 
-    @Column(name = "password", length = 30, unique = true)
+    @Column(name = "password", length = 255)
     String password;
 
-    @Column(name = "pin", length = 90)
+    @Column(name = "pin", length = 90, unique = true)
     String pin;
 
-    @Column(name = "role", length = 30)
+    @Column(name = "role", length = 50)
     String role;
 
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
-    List<Account> accountList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @Builder.Default
+    List<Account> accountList = new ArrayList<>();
 
 
     public void addAccountToList(List<AccountRequestDTO> accountRequestDTOList) {
-        accountList = new ArrayList<>();
-        accountList.forEach(accountDTO -> accountList.add(
-                Account.builder()
-                        .balance(accountDTO.getBalance())
-                        .currency(accountDTO.getCurrency())
-                        .isActive(accountDTO.getIsActive())
-                        .accountNo(accountDTO.getAccountNo())
-                        .user(this).build())
-        );
+        this.accountList = new ArrayList<>();
+        accountRequestDTOList.forEach(dto -> {
+            Account account = Account.builder()
+                    .balance(dto.getBalance())
+                    .currency(dto.getCurrency())
+                    .isActive(dto.getIsActive())
+                    .accountNo(dto.getAccountNo())
+                    .user(this)
+                    .build();
+
+            this.accountList.add(account);
+        });
 
     }
+
 }

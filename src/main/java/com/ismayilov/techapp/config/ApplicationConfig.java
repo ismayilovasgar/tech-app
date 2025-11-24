@@ -8,8 +8,10 @@ import org.slf4j.Logger;
 
 @Configuration
 public class ApplicationConfig {
+
     @Bean
     public Logger logger() {
         return LoggerFactory.getLogger(getClass().getName());
     }
+
 }
