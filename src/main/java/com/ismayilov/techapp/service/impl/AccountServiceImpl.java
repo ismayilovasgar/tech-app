@@ -13,6 +13,8 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.stream.Collectors;
+
 import java.util.Optional;
 
 
@@ -35,6 +37,25 @@ public class AccountServiceImpl implements AccountService {
                         .message("Accounts successfully fetched")
                         .build())
                 .data(AccountResponseDTOList.entityToDTO(user.get().getAccountList()))
+                .build();
+    }
+
+    @Override
+    public CommonResponseDTO<?> getActiveAccounts() {
+        Optional<TechUser> user = userRepository.findByPin(currentUser.getCurrentUser().getUsername());
+
+
+        var activeAccounts = user.get().getAccountList()
+                .stream()
+                .filter(account -> Boolean.TRUE.equals(account.getIsActive()))
+                .collect(Collectors.toList());
+
+        return CommonResponseDTO.builder()
+                .status(Status.builder()
+                        .statusCode(StatusCode.SUCCESS)
+                        .message("Active accounts successfully fetched")
+                        .build())
+                .data(AccountResponseDTOList.entityToDTO(activeAccounts))
                 .build();
     }
 }
