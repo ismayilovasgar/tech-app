@@ -46,4 +46,10 @@ public class GlobalExceptionHandler {
     public ResponseEntity<?> noFoundActiveAccount(NoActiveAccount noActiveAccount) {
         return new ResponseEntity<>(noActiveAccount.getResponseDTO(), HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(value = InvalidAmount.class)
+    public ResponseEntity<?> invalidAmount(InvalidAmount invalidAmount) {
+        return new ResponseEntity<>(invalidAmount.getResponseDTO(), HttpStatus.BAD_REQUEST);
+    }
+
 }

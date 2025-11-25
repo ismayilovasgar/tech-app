@@ -6,6 +6,7 @@ import com.ismayilov.techapp.dto.response.CommonResponseDTO;
 import com.ismayilov.techapp.dto.response.Status;
 import com.ismayilov.techapp.dto.response.StatusCode;
 import com.ismayilov.techapp.entity.TechUser;
+import com.ismayilov.techapp.exception.InvalidAmount;
 import com.ismayilov.techapp.repository.inter.UserRepository;
 import com.ismayilov.techapp.service.inter.AccountService;
 import com.ismayilov.techapp.util.CurrentUser;
@@ -15,6 +16,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.stream.Collectors;
 
 import java.util.Optional;
@@ -66,6 +68,13 @@ public class AccountServiceImpl implements AccountService {
 
     public CommonResponseDTO<?> account2account(AccountToAccountRequestDTO accountToAccountRequestDTO) {
         dtoUtil.isValid(accountToAccountRequestDTO);
+        if (accountToAccountRequestDTO.getAmount().compareTo(BigDecimal.ZERO) <= 0) {
+            throw InvalidAmount.builder()
+                    .responseDTO(CommonResponseDTO.builder().status(Status.builder()
+                            .statusCode(StatusCode.INVALID_AMOUNT)
+                            .message("Amount is not correct")
+                            .build()).build()).build();
+        }
         return null;
     }
 }
