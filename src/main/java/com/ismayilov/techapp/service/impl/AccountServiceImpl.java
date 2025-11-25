@@ -5,10 +5,15 @@ import com.ismayilov.techapp.dto.response.AccountResponseDTOList;
 import com.ismayilov.techapp.dto.response.CommonResponseDTO;
 import com.ismayilov.techapp.dto.response.Status;
 import com.ismayilov.techapp.dto.response.StatusCode;
+import com.ismayilov.techapp.entity.Account;
 import com.ismayilov.techapp.entity.TechUser;
 import com.ismayilov.techapp.exception.InvalidAmount;
+import com.ismayilov.techapp.exception.SameAccountTransfer;
+import com.ismayilov.techapp.repository.impl.AccountRepositoryCustomImpl;
+import com.ismayilov.techapp.repository.inter.AccountRepository;
 import com.ismayilov.techapp.repository.inter.UserRepository;
 import com.ismayilov.techapp.service.inter.AccountService;
+import com.ismayilov.techapp.util.AccountDTOUtil;
 import com.ismayilov.techapp.util.CurrentUser;
 import com.ismayilov.techapp.util.DTOUtil;
 import lombok.AccessLevel;
@@ -33,7 +38,14 @@ public class AccountServiceImpl implements AccountService {
     DTOUtil dtoUtil;
 
     @Autowired
+    AccountDTOUtil accountDTOUtil;
+
+    @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    AccountRepository accountRepository;
+
 
     public CommonResponseDTO<?> getAccount() {
         Optional<TechUser> user = userRepository.findByPin(currentUser.getCurrentUser().getUsername());
@@ -68,13 +80,24 @@ public class AccountServiceImpl implements AccountService {
 
     public CommonResponseDTO<?> account2account(AccountToAccountRequestDTO accountToAccountRequestDTO) {
         dtoUtil.isValid(accountToAccountRequestDTO);
-        if (accountToAccountRequestDTO.getAmount().compareTo(BigDecimal.ZERO) <= 0) {
-            throw InvalidAmount.builder()
-                    .responseDTO(CommonResponseDTO.builder().status(Status.builder()
-                            .statusCode(StatusCode.INVALID_AMOUNT)
-                            .message("Amount is not correct")
-                            .build()).build()).build();
-        }
+        accountDTOUtil.checkAccountNo(accountToAccountRequestDTO);
+        accountDTOUtil.checkInvalidAmount(accountToAccountRequestDTO);
+
+//        if (accountToAccountRequestDTO.getAmount().compareTo(BigDecimal.ZERO) <= 0) {
+//            throw InvalidAmount.builder()
+//                    .responseDTO(CommonResponseDTO.builder().status(Status.builder()
+//                            .statusCode(StatusCode.INVALID_AMOUNT)
+//                            .message("Amount is not correct")
+//                            .build()).build()).build();
+//        } else if (accountToAccountRequestDTO.getCreditAccount().equals(accountToAccountRequestDTO.getDebitAccount())) {
+//            throw SameAccountTransfer.builder()
+//                    .responseDTO(CommonResponseDTO.builder().status(Status.builder()
+//                            .statusCode(StatusCode.SAME_ACCOUNT_TRANSFER)
+//                            .message("Credit and debit accounts cannot be the same.")
+//                            .build()).build()).build();
+//        }
+
+        Optional<Account> byDebitAccountNo = accountRepository.findByAccountNo(accountToAccountRequestDTO.getDebitAccount());
         return null;
     }
 }
