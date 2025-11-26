@@ -52,4 +52,24 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(invalidAmount.getResponseDTO(), HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(value = CreditAccountInactive.class)
+    public ResponseEntity<?> creditAccountInactive(CreditAccountInactive creditAccountInactive) {
+        return new ResponseEntity<>(creditAccountInactive.getResponseDTO(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = DebitAccountInactive.class)
+    public ResponseEntity<?> invalidAmount(DebitAccountInactive debitAccountInactive) {
+        return new ResponseEntity<>(debitAccountInactive.getResponseDTO(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = InsufficientFunds.class)
+    public ResponseEntity<?> invalidAmount(InsufficientFunds insufficientFunds) {
+        return new ResponseEntity<>(insufficientFunds.getResponseDTO(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = AccountNotFound.class)
+    public ResponseEntity<?> accountNotFound(AccountNotFound accountNotFound) {
+        return new ResponseEntity<>(accountNotFound.getResponseDTO(), HttpStatus.BAD_REQUEST);
+    }
+
 }

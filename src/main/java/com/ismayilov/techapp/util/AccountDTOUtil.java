@@ -1,7 +1,6 @@
 package com.ismayilov.techapp.util;
 
 import com.ismayilov.techapp.dto.request.AccountToAccountRequestDTO;
-import com.ismayilov.techapp.dto.request.AuthenticationRequestDTO;
 import com.ismayilov.techapp.dto.response.CommonResponseDTO;
 import com.ismayilov.techapp.dto.response.Status;
 import com.ismayilov.techapp.dto.response.StatusCode;
