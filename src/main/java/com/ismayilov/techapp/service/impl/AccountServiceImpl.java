@@ -17,6 +17,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.stream.Collectors;
 
@@ -74,6 +75,7 @@ public class AccountServiceImpl implements AccountService {
                 .build();
     }
 
+    @Transactional
     public CommonResponseDTO<?> account2account(AccountToAccountRequestDTO accountToAccountRequestDTO) {
         dtoUtil.isValid(accountToAccountRequestDTO);
         accountDTOUtil.checkInvalidAmount(accountToAccountRequestDTO);
@@ -115,7 +117,7 @@ public class AccountServiceImpl implements AccountService {
             }
 
 
-            Optional<Account> byCreditAccountNo = accountRepository.findByAccountNo(accountToAccountRequestDTO.getDebitAccount());
+            Optional<Account> byCreditAccountNo = accountRepository.findByAccountNo(accountToAccountRequestDTO.getCreditAccount());
 
             if (byCreditAccountNo.isPresent()) {
                 creditAccount = byCreditAccountNo.get();
@@ -147,8 +149,12 @@ public class AccountServiceImpl implements AccountService {
                             .message("Debit balance is not present")
                             .build()).build()).build();
         }
+
         debitAccount.setBalance(debitAccount.getBalance().subtract(accountToAccountRequestDTO.getAmount()));
         creditAccount.setBalance(creditAccount.getBalance().add(accountToAccountRequestDTO.getAmount()));
+
+        System.out.println(debitAccount.getBalance());
+        System.out.println(creditAccount.getBalance());
 
         return CommonResponseDTO.builder()
                 .status(Status.builder()
