@@ -8,6 +8,7 @@ import com.ismayilov.techapp.exception.user.ForbiddenAccountAccess;
 import com.ismayilov.techapp.exception.user.NoSuchUserExist;
 import com.ismayilov.techapp.exception.user.UserAlreadyExist;
 import com.ismayilov.techapp.exception.validation.InvalidDTO;
+import com.ismayilov.techapp.exception.validation.InvalidToken;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -85,6 +86,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = ForbiddenAccountAccess.class)
     public ResponseEntity<?> forbiddenAccountAccess(ForbiddenAccountAccess forbiddenAccountAccess) {
         return new ResponseEntity<>(forbiddenAccountAccess.getResponseDTO(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = InvalidToken.class)
+    public ResponseEntity<?> tokenIsNotValid(InvalidToken invalidToken) {
+        return new ResponseEntity<>(invalidToken.getResponseDTO(), HttpStatus.FORBIDDEN);
     }
 
 }

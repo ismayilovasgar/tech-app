@@ -83,14 +83,14 @@ public class AccountServiceImpl implements AccountService {
         accountDTOUtil.checkAccountNo(accountToAccountRequestDTO);
 
         Optional<Account> byDebitAccountNo = accountRepository.findByAccountNo(accountToAccountRequestDTO.getDebitAccount());
-        TechUser user = ((UserDetailsImpl) currentUser.getCurrentUser()).getTechUser();
+//        TechUser user = ((UserDetailsImpl) currentUser.getCurrentUser()).getTechUser();
 
         Account debitAccount;
         Account creditAccount;
 
         if (byDebitAccountNo.isPresent()) {
             debitAccount = byDebitAccountNo.get();
-            accountDTOUtil.verifyDebitAccountOwner(debitAccount, user);
+//            accountDTOUtil.verifyDebitAccountOwner(debitAccount, user);
 
             if (!debitAccount.getIsActive()) {
                 throw DebitAccountInactive.builder()
@@ -158,4 +158,10 @@ public class AccountServiceImpl implements AccountService {
                         .isActive(debitAccount.getIsActive())
                         .accountNo(debitAccount.getAccountNo()).build()).build();
     }
+
+    private void validateUserAndAccount(AccountToAccountRequestDTO requestDTO) {
+
+
+    }
+
 }
