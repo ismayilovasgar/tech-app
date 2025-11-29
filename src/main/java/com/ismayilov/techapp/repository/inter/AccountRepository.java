@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface AccountRepository extends JpaRepository<Account, Long>, AccountRepositoryCustom {
 
@@ -17,5 +18,7 @@ public interface AccountRepository extends JpaRepository<Account, Long>, Account
     @Query("SELECT a FROM Account a WHERE a.user.pin = :pin AND a.isActive = true")
     List<Account> findActiveAccountsByUserPin(@Param("pin") String pin);
 
+    Optional<Account> findByAccountNo(Integer accountNo);
+//    boolean existsByAccountNoAndUserId(Integer  accountNumber, Long userId);
 
 }

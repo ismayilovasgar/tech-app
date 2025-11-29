@@ -22,7 +22,8 @@ public class AccountResponseDTOList implements Serializable {
     List<AccountResponseDTO> accountResponseDTOList;
 
     public static AccountResponseDTOList entityToDTO(List<Account> accountList) {
-        accountList = accountList.stream().filter(Account::getIsActive).collect(Collectors.toList());
+//        accountList = accountList.stream().filter(Account::getIsActive).collect(Collectors.toList());
+        accountList = new ArrayList<>(accountList);
         if (!accountList.isEmpty()) {
             List<AccountResponseDTO> accountResponseDTOList = new ArrayList<>();
             accountList.forEach(account -> accountResponseDTOList.add(AccountResponseDTO.entityDTO(account)));

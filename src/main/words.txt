@@ -1,0 +1,64 @@
+✅ Bank Exception Sözləri – Cədvəl
+📌 1. Account (Hesab) bağlı sözlər
+İngilis söz	                Azərbaycan	        Türkçe
+Account	                    Hesab	            Hesap
+Not Found	                Tapılmadı	        Bulunamadı
+Inactive	                Aktiv deyil 	    Pasif
+Locked	                    Kilidlənmiş	        Kilitli
+Exists / Already Exists	    Artıq mövcuddur	    Zaten mevcut
+Status	                    Status,vəziyyət	Durum
+
+📌 2. Transaction (Əməliyyat) bağlı sözlər
+İngilis söz	    Azərbaycan	Türkçe
+Transaction	    Əməliyyat	İşlem
+Invalid	        Keçərsiz,   səhv	Geçersiz
+Amount	        Məbləğ	    Tutar
+Insufficient	Yetərsiz	Yetersiz
+Funds	        Vəsait,     pul	Para
+Duplicate	    Təkrar	    Yinelenen
+Unauthorized	İcazəsiz	Yetkisiz
+Timeout	        Zaman aşımı	Zaman aşımı
+Type	        Tip	        Tür
+
+📌 3. Card (Kart) bağlı sözlər
+İngilis söz	    Azərbaycan	        Türkçe
+Card	        Kart	            Kart
+Expired	        Vaxtı bitmiş	    Süresi dolmuş
+Blocked	        Bloklanmış	        Bloke
+Number	        Nömrə	            Numara
+Invalid	        Keçərsiz	        Geçersiz
+CVV	            Təhlükəsizlik kodu	Güvenlik kodu
+PIN	            Şifrə	            PIN kodu
+
+📌 4. User / Security sözləri
+İngilis söz	            Azərbaycan	        Türkçe
+User	                İstifadəçi	        Kullanıcı
+Credentials	            Giriş məlumatları	Kimlik bilgileri
+Session	                Sessiya	            Oturum
+Expired	                Vaxtı bitmiş	    Süresi dolmuş
+Unauthorized Access	    İcazəsiz giriş	    Yetkisiz erişim
+Too Many Attempts	    Çox cəhd	        Çok fazla deneme
+
+📌 5. Payment / Transfer sözləri
+İngilis söz	        Azərbaycan	        Türkçe
+Payment	            Ödəniş	            Ödeme
+Failed	            Uğursuz	            Başarısız
+Transfer	        Köçürmə	            Havale
+Limit	            Limit	            Limit
+Exceeded	        Aşıldı	            Aşıldı
+Beneficiary	        Alan şəxs	        Alıcı
+Currency	        Valyuta	            Para birimi
+Mismatch	        Uyğunsuzluq	        Uyuşmazlık
+
+📌 6. General (Ümumi) sözlər
+İngilis söz	        Azərbaycan	        Türkçe
+Validation	        Doğrulama	        Doğrulama
+Business Rule	    Biznes qaydası	    İş kuralı
+Violation	        Pozuntu	            İhlal
+Operation	        Əməliyyat	        Operasyon
+Not Allowed	        İcazə verilmir	    İzin verilmiyor
+Resource	        Resurs	            Kaynak
+Service	            Xidmət	            Servis
+Unavailable	        Mövcud deyil	    Kullanılamıyor
+Conflict	        Ziddiyyət	        Çakışma
+Bad Request	        Yanlış sorğu	    Hatalı istek
