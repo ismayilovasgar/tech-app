@@ -72,4 +72,14 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(accountNotFound.getResponseDTO(), HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(value = SameAccountTransfer.class)
+    public ResponseEntity<?> sameAccountTransfer(SameAccountTransfer sameAccountTransfer) {
+        return new ResponseEntity<>(sameAccountTransfer.getResponseDTO(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = ForbiddenAccountAccess.class)
+    public ResponseEntity<?> forbiddenAccountAccess(ForbiddenAccountAccess forbiddenAccountAccess) {
+        return new ResponseEntity<>(forbiddenAccountAccess.getResponseDTO(), HttpStatus.BAD_REQUEST);
+    }
+
 }

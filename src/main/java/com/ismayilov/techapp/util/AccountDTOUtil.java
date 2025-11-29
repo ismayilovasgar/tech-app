@@ -4,6 +4,9 @@ import com.ismayilov.techapp.dto.request.AccountToAccountRequestDTO;
 import com.ismayilov.techapp.dto.response.CommonResponseDTO;
 import com.ismayilov.techapp.dto.response.Status;
 import com.ismayilov.techapp.dto.response.StatusCode;
+import com.ismayilov.techapp.entity.Account;
+import com.ismayilov.techapp.entity.TechUser;
+import com.ismayilov.techapp.exception.ForbiddenAccountAccess;
 import com.ismayilov.techapp.exception.InvalidAmount;
 import com.ismayilov.techapp.exception.SameAccountTransfer;
 import org.slf4j.Logger;
@@ -37,4 +40,16 @@ public class AccountDTOUtil {
                             .build()).build()).build();
         }
     }
+
+    public void verifyDebitAccountOwner(Account debitAccount, TechUser currentUser) {
+        if (!debitAccount.getUser().getId().equals(currentUser.getId())) {
+            throw ForbiddenAccountAccess.builder()
+                    .responseDTO(CommonResponseDTO.builder().status(Status.builder()
+                            .statusCode(StatusCode.FORBIDDEN_ACCOUNT_ACCESS)
+                            .message("Debit account does not belong to the current user")
+                            .build()).build()).build();
+        }
+    }
+
+
 }

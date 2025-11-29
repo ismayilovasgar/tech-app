@@ -35,6 +35,15 @@ public class UserDetailsImpl implements UserDetails {
         return user.getPassword();
     }
 
+
+    public Long getId() {
+        return user.getId();
+    }
+
+    public TechUser getTechUser() {
+        return this.user;
+    }
+
     @Override
     public String getUsername() {
         return user.getPin();

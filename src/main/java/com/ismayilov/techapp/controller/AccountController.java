@@ -1,8 +1,8 @@
 package com.ismayilov.techapp.controller;
 
+
 import com.ismayilov.techapp.dto.request.AccountToAccountRequestDTO;
 import com.ismayilov.techapp.service.impl.AccountServiceImpl;
-import com.ismayilov.techapp.service.inter.AccountService;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,4 +27,5 @@ public class AccountController {
     public ResponseEntity<?> transfer(@RequestBody AccountToAccountRequestDTO accountToAccountRequestDTO) {
         return new ResponseEntity<>(accountService.account2account(accountToAccountRequestDTO), HttpStatus.OK);
     }
+
 }

@@ -19,4 +19,6 @@ public interface AccountRepository extends JpaRepository<Account, Long>, Account
     List<Account> findActiveAccountsByUserPin(@Param("pin") String pin);
 
     Optional<Account> findByAccountNo(Integer accountNo);
+//    boolean existsByAccountNoAndUserId(Integer  accountNumber, Long userId);
+
 }

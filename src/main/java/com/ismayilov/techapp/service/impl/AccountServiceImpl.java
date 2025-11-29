@@ -1,5 +1,6 @@
 package com.ismayilov.techapp.service.impl;
 
+import com.ismayilov.techapp.config.security.UserDetailsImpl;
 import com.ismayilov.techapp.dto.request.AccountToAccountRequestDTO;
 import com.ismayilov.techapp.dto.response.*;
 import com.ismayilov.techapp.entity.Account;
@@ -81,26 +82,16 @@ public class AccountServiceImpl implements AccountService {
         accountDTOUtil.checkInvalidAmount(accountToAccountRequestDTO);
         accountDTOUtil.checkAccountNo(accountToAccountRequestDTO);
 
-//        if (accountToAccountRequestDTO.getAmount().compareTo(BigDecimal.ZERO) <= 0) {
-//            throw InvalidAmount.builder()
-//                    .responseDTO(CommonResponseDTO.builder().status(Status.builder()
-//                            .statusCode(StatusCode.INVALID_AMOUNT)
-//                            .message("Amount is not correct")
-//                            .build()).build()).build();
-//        } else if (accountToAccountRequestDTO.getCreditAccount().equals(accountToAccountRequestDTO.getDebitAccount())) {
-//            throw SameAccountTransfer.builder()
-//                    .responseDTO(CommonResponseDTO.builder().status(Status.builder()
-//                            .statusCode(StatusCode.SAME_ACCOUNT_TRANSFER)
-//                            .message("Credit and debit accounts cannot be the same.")
-//                            .build()).build()).build();
-//        }
-
         Optional<Account> byDebitAccountNo = accountRepository.findByAccountNo(accountToAccountRequestDTO.getDebitAccount());
+        TechUser user = ((UserDetailsImpl) currentUser.getCurrentUser()).getTechUser();
+
         Account debitAccount;
         Account creditAccount;
 
         if (byDebitAccountNo.isPresent()) {
             debitAccount = byDebitAccountNo.get();
+            accountDTOUtil.verifyDebitAccountOwner(debitAccount, user);
+
             if (!debitAccount.getIsActive()) {
                 throw DebitAccountInactive.builder()
                         .responseDTO(CommonResponseDTO.builder().status(Status.builder()
@@ -149,6 +140,7 @@ public class AccountServiceImpl implements AccountService {
                             .message("Debit balance is not present")
                             .build()).build()).build();
         }
+
 
         debitAccount.setBalance(debitAccount.getBalance().subtract(accountToAccountRequestDTO.getAmount()));
         creditAccount.setBalance(creditAccount.getBalance().add(accountToAccountRequestDTO.getAmount()));
