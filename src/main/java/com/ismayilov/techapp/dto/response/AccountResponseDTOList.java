@@ -1,7 +1,7 @@
 package com.ismayilov.techapp.dto.response;
 
 import com.ismayilov.techapp.entity.Account;
-import com.ismayilov.techapp.exception.NoActiveAccount;
+import com.ismayilov.techapp.exception.account.NoActiveAccount;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
@@ -10,7 +10,6 @@ import lombok.experimental.FieldDefaults;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Data
 @Builder

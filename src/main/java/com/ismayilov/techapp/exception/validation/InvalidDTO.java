@@ -1,4 +1,5 @@
-package com.ismayilov.techapp.exception;
+package com.ismayilov.techapp.exception.validation;
+
 
 import com.ismayilov.techapp.dto.response.CommonResponseDTO;
 import lombok.AccessLevel;
@@ -11,6 +12,6 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @EqualsAndHashCode(callSuper = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class NoActiveAccount extends RuntimeException {
+public class InvalidDTO extends RuntimeException {
     CommonResponseDTO<?> responseDTO;
 }

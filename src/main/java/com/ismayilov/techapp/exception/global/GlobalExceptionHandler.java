@@ -1,8 +1,13 @@
-package com.ismayilov.techapp.exception;
+package com.ismayilov.techapp.exception.global;
 
 import com.ismayilov.techapp.dto.response.CommonResponseDTO;
 import com.ismayilov.techapp.dto.response.Status;
 import com.ismayilov.techapp.dto.response.StatusCode;
+import com.ismayilov.techapp.exception.account.*;
+import com.ismayilov.techapp.exception.user.ForbiddenAccountAccess;
+import com.ismayilov.techapp.exception.user.NoSuchUserExist;
+import com.ismayilov.techapp.exception.user.UserAlreadyExist;
+import com.ismayilov.techapp.exception.validation.InvalidDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
