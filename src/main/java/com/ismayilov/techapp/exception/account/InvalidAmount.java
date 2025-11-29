@@ -1,4 +1,5 @@
-package com.ismayilov.techapp.exception;
+package com.ismayilov.techapp.exception.account;
+
 
 import com.ismayilov.techapp.dto.response.CommonResponseDTO;
 import lombok.AccessLevel;
@@ -11,6 +12,6 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @EqualsAndHashCode(callSuper = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ForbiddenAccountAccess extends RuntimeException {
+public class InvalidAmount extends RuntimeException {
     CommonResponseDTO<?> responseDTO;
 }

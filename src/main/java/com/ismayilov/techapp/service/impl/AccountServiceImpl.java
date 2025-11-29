@@ -5,8 +5,10 @@ import com.ismayilov.techapp.dto.request.AccountToAccountRequestDTO;
 import com.ismayilov.techapp.dto.response.*;
 import com.ismayilov.techapp.entity.Account;
 import com.ismayilov.techapp.entity.TechUser;
-import com.ismayilov.techapp.exception.*;
-import com.ismayilov.techapp.repository.impl.AccountRepositoryCustomImpl;
+import com.ismayilov.techapp.exception.account.AccountNotFound;
+import com.ismayilov.techapp.exception.account.CreditAccountInactive;
+import com.ismayilov.techapp.exception.account.DebitAccountInactive;
+import com.ismayilov.techapp.exception.account.InsufficientFunds;
 import com.ismayilov.techapp.repository.inter.AccountRepository;
 import com.ismayilov.techapp.repository.inter.UserRepository;
 import com.ismayilov.techapp.service.inter.AccountService;
@@ -19,10 +21,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.math.BigDecimal;
-import java.util.stream.Collectors;
-
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
