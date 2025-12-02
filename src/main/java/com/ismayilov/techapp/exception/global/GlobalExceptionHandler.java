@@ -3,6 +3,7 @@ package com.ismayilov.techapp.exception.global;
 import com.ismayilov.techapp.dto.response.CommonResponseDTO;
 import com.ismayilov.techapp.dto.response.Status;
 import com.ismayilov.techapp.dto.response.StatusCode;
+import com.ismayilov.techapp.exception.CbarRestException.CbarRestException;
 import com.ismayilov.techapp.exception.account.*;
 import com.ismayilov.techapp.exception.user.ForbiddenAccountAccess;
 import com.ismayilov.techapp.exception.user.NoSuchUserExist;
@@ -92,5 +93,11 @@ public class GlobalExceptionHandler {
     public ResponseEntity<?> tokenIsNotValid(InvalidToken invalidToken) {
         return new ResponseEntity<>(invalidToken.getResponseDTO(), HttpStatus.FORBIDDEN);
     }
+
+    @ExceptionHandler(value = CbarRestException.class)
+    public ResponseEntity<?> cbarRestError(CbarRestException cbarRestException) {
+        return new ResponseEntity<>(cbarRestException.getResponseDTO(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
 
 }

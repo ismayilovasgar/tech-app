@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter;
 public class ApplicationConfig {
 
     @Getter
-    private static String urlMB;
+    public static String urlMB;
 
     @Bean
     public Logger logger() {
