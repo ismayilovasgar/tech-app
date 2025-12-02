@@ -9,6 +9,7 @@ import com.ismayilov.techapp.exception.account.AccountNotFound;
 import com.ismayilov.techapp.exception.account.CreditAccountInactive;
 import com.ismayilov.techapp.exception.account.DebitAccountInactive;
 import com.ismayilov.techapp.exception.account.InsufficientFunds;
+import com.ismayilov.techapp.exception.validation.InvalidToken;
 import com.ismayilov.techapp.repository.inter.AccountRepository;
 import com.ismayilov.techapp.repository.inter.UserRepository;
 import com.ismayilov.techapp.service.inter.AccountService;
@@ -21,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -78,19 +80,18 @@ public class AccountServiceImpl implements AccountService {
 
     @Transactional
     public CommonResponseDTO<?> account2account(AccountToAccountRequestDTO accountToAccountRequestDTO) {
+        validateUserAndAccount(accountToAccountRequestDTO);
         dtoUtil.isValid(accountToAccountRequestDTO);
         accountDTOUtil.checkInvalidAmount(accountToAccountRequestDTO);
         accountDTOUtil.checkAccountNo(accountToAccountRequestDTO);
 
         Optional<Account> byDebitAccountNo = accountRepository.findByAccountNo(accountToAccountRequestDTO.getDebitAccount());
-        TechUser user = ((UserDetailsImpl) currentUser.getCurrentUser()).getTechUser();
 
         Account debitAccount;
         Account creditAccount;
 
         if (byDebitAccountNo.isPresent()) {
             debitAccount = byDebitAccountNo.get();
-            accountDTOUtil.verifyDebitAccountOwner(debitAccount, user);
 
             if (!debitAccount.getIsActive()) {
                 throw DebitAccountInactive.builder()
@@ -158,4 +159,28 @@ public class AccountServiceImpl implements AccountService {
                         .isActive(debitAccount.getIsActive())
                         .accountNo(debitAccount.getAccountNo()).build()).build();
     }
+
+    private void validateUserAndAccount(AccountToAccountRequestDTO requestDTO) {
+        Optional<TechUser> user = userRepository.findByPin(currentUser.getCurrentUser().getUsername());
+
+        if (user.isEmpty()) {
+            throw InvalidToken.builder()
+                    .responseDTO(CommonResponseDTO.builder().status(Status.builder()
+                            .statusCode(StatusCode.INVALID_TOKEN)
+                            .message("The token is not tied to this user")
+                            .build()).build()).build();
+        }
+
+        TechUser techUser = user.get();
+        List<Account> accountList = techUser.getAccountList();
+        if (accountList.stream().noneMatch(account -> account.getAccountNo().equals(requestDTO.getDebitAccount()))
+        ) {
+            throw InvalidToken.builder()
+                    .responseDTO(CommonResponseDTO.builder().status(Status.builder()
+                            .statusCode(StatusCode.FORBIDDEN_ACCOUNT_ACCESS)
+                            .message("The token is not tied to this user")
+                            .build()).build()).build();
+        }
+    }
+
 }

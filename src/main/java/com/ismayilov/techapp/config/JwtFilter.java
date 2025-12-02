@@ -32,6 +32,8 @@ import java.util.function.Function;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class JwtFilter extends OncePerRequestFilter {
 
+    //* Client → JWT → JwtFilter → SecurityContext → getCurrentUser()
+
     @Autowired
     JwtUtil jwtUtil;
 
