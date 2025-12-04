@@ -1,4 +1,4 @@
-package com.ismayilov.techapp.service.impl.transfer;
+package com.ismayilov.techapp.util.transfer;
 
 
 import com.ismayilov.techapp.dto.request.AccountToAccountRequestDTO;
