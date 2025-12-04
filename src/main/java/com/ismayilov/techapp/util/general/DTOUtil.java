@@ -1,4 +1,4 @@
-package com.ismayilov.techapp.util;
+package com.ismayilov.techapp.util.general;
 
 import com.ismayilov.techapp.dto.request.AccountToAccountRequestDTO;
 import com.ismayilov.techapp.dto.request.AuthenticationRequestDTO;
@@ -6,7 +6,7 @@ import com.ismayilov.techapp.dto.request.UserRequestDTO;
 import com.ismayilov.techapp.dto.response.CommonResponseDTO;
 import com.ismayilov.techapp.dto.response.Status;
 import com.ismayilov.techapp.dto.response.StatusCode;
-import com.ismayilov.techapp.exception.validation.InvalidDTO;
+import com.ismayilov.techapp.exception.global.InvalidDTO;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

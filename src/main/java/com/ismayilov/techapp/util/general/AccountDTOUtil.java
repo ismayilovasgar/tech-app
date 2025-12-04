@@ -1,4 +1,4 @@
-package com.ismayilov.techapp.util;
+package com.ismayilov.techapp.util.general;
 
 import com.ismayilov.techapp.dto.request.AccountToAccountRequestDTO;
 import com.ismayilov.techapp.dto.response.CommonResponseDTO;
@@ -6,17 +6,18 @@ import com.ismayilov.techapp.dto.response.Status;
 import com.ismayilov.techapp.dto.response.StatusCode;
 import com.ismayilov.techapp.entity.Account;
 import com.ismayilov.techapp.entity.TechUser;
-import com.ismayilov.techapp.exception.user.ForbiddenAccountAccess;
-import com.ismayilov.techapp.exception.account.InvalidAmount;
-import com.ismayilov.techapp.exception.account.SameAccountTransfer;
+import com.ismayilov.techapp.exception.global.InvalidAmount;
+import com.ismayilov.techapp.exception.global.SameAccountTransfer;
+import com.ismayilov.techapp.exception.global.ForbiddenAccountAccess;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
+
 @Component
-public class AccountDTOUtil {
+public  class AccountDTOUtil {
 
     @Autowired
     Logger logger;
@@ -53,3 +54,4 @@ public class AccountDTOUtil {
 
 
 }
+

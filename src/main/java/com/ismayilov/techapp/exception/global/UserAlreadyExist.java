@@ -1,4 +1,4 @@
-package com.ismayilov.techapp.exception.account;
+package com.ismayilov.techapp.exception.global;
 
 
 import com.ismayilov.techapp.dto.response.CommonResponseDTO;
@@ -12,6 +12,6 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @EqualsAndHashCode(callSuper = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class AccountNotFound extends RuntimeException {
+public class UserAlreadyExist extends RuntimeException {
     CommonResponseDTO<?> responseDTO;
 }

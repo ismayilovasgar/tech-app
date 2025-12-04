@@ -2,7 +2,7 @@ package com.ismayilov.techapp.dto.response;
 
 
 import com.ismayilov.techapp.entity.Account;
-import com.ismayilov.techapp.util.Currency;
+import com.ismayilov.techapp.util.currency.Currency;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
@@ -23,7 +23,7 @@ public class AccountResponseDTO implements Serializable {
     Integer accountNo;
 
 
-    public static AccountResponseDTO entityDTO(Account account) {
+    public static AccountResponseDTO fromEntity(Account account) {
         return AccountResponseDTO.builder()
                 .balance(account.getBalance())
                 .currency(account.getCurrency())

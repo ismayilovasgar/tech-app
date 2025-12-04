@@ -1,7 +1,7 @@
 package com.ismayilov.techapp.dto.response;
 
 import com.ismayilov.techapp.entity.Account;
-import com.ismayilov.techapp.exception.account.NoActiveAccount;
+import com.ismayilov.techapp.exception.global.NoActiveAccount;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
@@ -25,7 +25,7 @@ public class AccountResponseDTOList implements Serializable {
         accountList = new ArrayList<>(accountList);
         if (!accountList.isEmpty()) {
             List<AccountResponseDTO> accountResponseDTOList = new ArrayList<>();
-            accountList.forEach(account -> accountResponseDTOList.add(AccountResponseDTO.entityDTO(account)));
+            accountList.forEach(account -> accountResponseDTOList.add(AccountResponseDTO.fromEntity(account)));
             return AccountResponseDTOList.builder().accountResponseDTOList(accountResponseDTOList).build();
         } else {
             throw NoActiveAccount.builder()

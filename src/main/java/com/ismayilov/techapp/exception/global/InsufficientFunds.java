@@ -1,5 +1,4 @@
-package com.ismayilov.techapp.exception.account;
-
+package com.ismayilov.techapp.exception.global;
 
 import com.ismayilov.techapp.dto.response.CommonResponseDTO;
 import lombok.AccessLevel;
@@ -12,6 +11,6 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @EqualsAndHashCode(callSuper = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class InvalidAmount extends RuntimeException {
+public class InsufficientFunds extends RuntimeException {
     CommonResponseDTO<?> responseDTO;
 }
