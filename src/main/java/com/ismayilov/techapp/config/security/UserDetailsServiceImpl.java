@@ -4,7 +4,7 @@ import com.ismayilov.techapp.dto.response.CommonResponseDTO;
 import com.ismayilov.techapp.dto.response.Status;
 import com.ismayilov.techapp.dto.response.StatusCode;
 import com.ismayilov.techapp.entity.TechUser;
-import com.ismayilov.techapp.exception.user.NoSuchUserExist;
+import com.ismayilov.techapp.exception.global.NoSuchUserExist;
 import com.ismayilov.techapp.repository.inter.UserRepository;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;

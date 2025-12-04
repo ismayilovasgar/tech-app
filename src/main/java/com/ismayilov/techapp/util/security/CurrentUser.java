@@ -1,4 +1,4 @@
-package com.ismayilov.techapp.util;
+package com.ismayilov.techapp.util.security;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;

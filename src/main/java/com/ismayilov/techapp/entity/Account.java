@@ -1,6 +1,6 @@
 package com.ismayilov.techapp.entity;
 
-import com.ismayilov.techapp.util.Currency;
+import com.ismayilov.techapp.util.currency.Currency;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

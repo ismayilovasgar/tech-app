@@ -28,6 +28,6 @@ public class ValuteResponseDTO implements Serializable {
     @XmlElement(name = "Name")
     String name;
 
-    @XmlElement(name = "Value ")
+    @XmlElement(name = "Value")
     BigDecimal value;
 }
