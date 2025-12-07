@@ -1,4 +1,4 @@
-package com.ismayilov.techapp.exception.global;
+package com.ismayilov.techapp.exception.account;
 
 
 import com.ismayilov.techapp.dto.response.CommonResponseDTO;

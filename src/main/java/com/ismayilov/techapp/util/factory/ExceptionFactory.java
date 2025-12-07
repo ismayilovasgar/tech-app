@@ -1,12 +1,12 @@
 package com.ismayilov.techapp.util.factory;
 
 import com.ismayilov.techapp.dto.response.StatusCode;
-import com.ismayilov.techapp.exception.global.AccountNotFound;
-import com.ismayilov.techapp.exception.global.CreditAccountInactive;
-import com.ismayilov.techapp.exception.global.DebitAccountInactive;
-import com.ismayilov.techapp.exception.global.InsufficientFunds;
-import com.ismayilov.techapp.exception.global.ForbiddenAccountAccess;
-import com.ismayilov.techapp.exception.global.InvalidToken;
+import com.ismayilov.techapp.exception.account.AccountNotFound;
+import com.ismayilov.techapp.exception.account.CreditAccountInactive;
+import com.ismayilov.techapp.exception.account.DebitAccountInactive;
+import com.ismayilov.techapp.exception.account.InsufficientFunds;
+import com.ismayilov.techapp.exception.account.ForbiddenAccountAccess;
+import com.ismayilov.techapp.exception.token.InvalidToken;
 
 
 public class ExceptionFactory {
@@ -41,7 +41,7 @@ public class ExceptionFactory {
     public static InsufficientFunds insufficientCredit() {
         return InsufficientFunds.builder()
                 .responseDTO(ResponseFactory.error(StatusCode.INSUFFICIENT_CREDIT_BALANCE,
-                        "Credit balance is not enough"))
+                        "Credit balance is not enough !!"))
                 .build();
     }
 

@@ -1,5 +1,4 @@
-package com.ismayilov.techapp.exception.global;
-
+package com.ismayilov.techapp.exception.cbar;
 
 import com.ismayilov.techapp.dto.response.CommonResponseDTO;
 import lombok.AccessLevel;
@@ -12,6 +11,6 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @EqualsAndHashCode(callSuper = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserAlreadyExist extends RuntimeException {
+public class CbarRestException extends RuntimeException {
     CommonResponseDTO<?> responseDTO;
 }

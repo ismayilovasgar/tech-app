@@ -5,7 +5,7 @@ import com.ismayilov.techapp.dto.response.CommonResponseDTO;
 import com.ismayilov.techapp.dto.response.Status;
 import com.ismayilov.techapp.dto.response.StatusCode;
 import com.ismayilov.techapp.dto.response.mbdto.ValCursResponseDTO;
-import com.ismayilov.techapp.exception.CbarRestException.CbarRestException;
+import com.ismayilov.techapp.exception.cbar.CbarRestException;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
