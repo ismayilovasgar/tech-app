@@ -41,7 +41,7 @@ public class ExceptionFactory {
     public static InsufficientFunds insufficientCredit() {
         return InsufficientFunds.builder()
                 .responseDTO(ResponseFactory.error(StatusCode.INSUFFICIENT_CREDIT_BALANCE,
-                        "Credit balance is not enough"))
+                        "Credit balance is not enough !!"))
                 .build();
     }
 

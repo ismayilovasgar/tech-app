@@ -13,16 +13,16 @@ public class AccountResolver {
 
     private final AccountRepository accountRepository;
 
-    public Account getDebitAccount(String accountNo) {
-        return accountRepository.findByAccountNo(Integer.valueOf(accountNo))
+    public Account getDebitAccount(Integer accountNo) {
+        return accountRepository.findByAccountNo(accountNo)
                 .orElseThrow(() ->
                         ExceptionFactory.accountNotFound(
                                 StatusCode.DEBIT_ACCOUNT_NOT_PRESENT,
                                 "Debit account is not present"));
     }
 
-    public Account getCreditAccount(String accountNo) {
-        return accountRepository.findByAccountNo(Integer.valueOf(accountNo))
+    public Account getCreditAccount(Integer accountNo) {
+        return accountRepository.findByAccountNo(accountNo)
                 .orElseThrow(() ->
                         ExceptionFactory.accountNotFound(
                                 StatusCode.CREDIT_ACCOUNT_NOT_PRESENT,

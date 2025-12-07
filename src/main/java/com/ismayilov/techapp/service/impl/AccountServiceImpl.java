@@ -38,17 +38,9 @@ public class AccountServiceImpl implements AccountService {
     @Autowired
     ValidateAccount validateAccount;
 
-    @Autowired
-    DTOUtil dtoUtil;
-
-    @Autowired
-    AccountDTOUtil accountDTOUtil;
 
     @Autowired
     UserRepository userRepository;
-
-    @Autowired
-    AccountRepository accountRepository;
 
 
     public CommonResponseDTO<?> getAccount() {
@@ -70,11 +62,11 @@ public class AccountServiceImpl implements AccountService {
         validateAccount.validateUserAndAccount(dto);
         transferValidator.validate(dto);
 
-        Account debit = accountResolver.getDebitAccount(String.valueOf(dto.getDebitAccount()));
-        Account credit = accountResolver.getCreditAccount(String.valueOf(dto.getCreditAccount()));
+        Account debit = accountResolver.getDebitAccount((dto.getDebitAccount()));
+        Account credit = accountResolver.getCreditAccount(dto.getCreditAccount());
 
         ruleChecker.checkDebitAccount(debit, dto.getAmount());
-        ruleChecker.checkCreditAccount(credit, dto.getAmount());
+        // ruleChecker.checkCreditAccount(credit, dto.getAmount());
 
         processor.process(debit, credit, dto.getAmount());
 
