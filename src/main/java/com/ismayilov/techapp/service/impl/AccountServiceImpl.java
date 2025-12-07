@@ -4,21 +4,16 @@ import com.ismayilov.techapp.dto.request.AccountToAccountRequestDTO;
 import com.ismayilov.techapp.dto.response.*;
 import com.ismayilov.techapp.entity.Account;
 import com.ismayilov.techapp.entity.TechUser;
-import com.ismayilov.techapp.exception.global.InvalidToken;
-import com.ismayilov.techapp.repository.inter.AccountRepository;
 import com.ismayilov.techapp.repository.inter.UserRepository;
 import com.ismayilov.techapp.util.transfer.*;
 import com.ismayilov.techapp.service.inter.AccountService;
-import com.ismayilov.techapp.util.general.AccountDTOUtil;
 import com.ismayilov.techapp.util.security.CurrentUser;
-import com.ismayilov.techapp.util.general.DTOUtil;
 import com.ismayilov.techapp.util.factory.ResponseFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
 import java.util.Optional;
 
 

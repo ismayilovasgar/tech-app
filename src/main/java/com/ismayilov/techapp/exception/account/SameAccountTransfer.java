@@ -1,4 +1,5 @@
-package com.ismayilov.techapp.exception.global;
+package com.ismayilov.techapp.exception.account;
+
 
 import com.ismayilov.techapp.dto.response.CommonResponseDTO;
 import lombok.AccessLevel;
@@ -11,6 +12,6 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @EqualsAndHashCode(callSuper = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class NoSuchUserExist extends RuntimeException {
+public class SameAccountTransfer extends RuntimeException {
     CommonResponseDTO<?> responseDTO;
 }

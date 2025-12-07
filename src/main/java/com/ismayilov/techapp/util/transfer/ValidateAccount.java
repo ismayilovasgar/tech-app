@@ -6,7 +6,7 @@ import com.ismayilov.techapp.dto.response.Status;
 import com.ismayilov.techapp.dto.response.StatusCode;
 import com.ismayilov.techapp.entity.Account;
 import com.ismayilov.techapp.entity.TechUser;
-import com.ismayilov.techapp.exception.global.InvalidToken;
+import com.ismayilov.techapp.exception.token.InvalidToken;
 import com.ismayilov.techapp.repository.inter.UserRepository;
 import com.ismayilov.techapp.util.security.CurrentUser;
 import lombok.RequiredArgsConstructor;
